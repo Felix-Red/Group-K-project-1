@@ -55,6 +55,8 @@ accuracy_score(Y_train,pred_cv)
 # Initialize the Dash app
 app = dash.Dash(__name__)
 
+server = app.server
+
 # Define the layout of your app
 app.layout = html.Div([
     html.H1("Loan Approval Prediction"),
