@@ -58,7 +58,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 1,
+   "execution_count": 95,
    "metadata": {
     "id": "A3UYLECn7CyW"
    },
@@ -76,14 +76,12 @@
     "import skimpy as sk\n",
     "from category_encoders import OneHotEncoder\n",
     "import matplotlib.pyplot as plt\n",
-    "import dash\n",
-    "from dash import dcc, html\n",
-    "from dash.dependencies import Input, Output"
+    "import plotly.express as px"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 69,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/",
@@ -237,14 +235,14 @@
        "4             1.0         Urban           Y  "
       ]
      },
-     "execution_count": 2,
+     "execution_count": 69,
      "metadata": {},
      "output_type": "execute_result"
     }
    ],
    "source": [
-    "loan_df = pd.read_csv(\"./data/raw_data.csv\")\n",
-    "loan_val = pd.read_csv(\"./data/validation.csv\")\n",
+    "loan_df = pd.read_csv(\"./data-for-project-1/raw_data.csv\")\n",
+    "loan_val = pd.read_csv(\"./data-for-project-1/validation.csv\")\n",
     "#loan_val.head()\n",
     "loan_df.head()\n"
    ]
@@ -269,7 +267,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": 70,
    "metadata": {},
    "outputs": [
     {
@@ -286,7 +284,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": 71,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/",
@@ -415,7 +413,7 @@
        "max          1.000000  "
       ]
      },
-     "execution_count": 4,
+     "execution_count": 71,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -426,7 +424,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 72,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/",
@@ -457,7 +455,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
+   "execution_count": 73,
    "metadata": {},
    "outputs": [
     {
@@ -544,7 +542,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
+   "execution_count": 75,
    "metadata": {},
    "outputs": [
     {
@@ -586,7 +584,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 76,
    "metadata": {},
    "outputs": [
     {
@@ -639,7 +637,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 9,
+   "execution_count": 77,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/"
@@ -667,7 +665,7 @@
        "dtype: int64"
       ]
      },
-     "execution_count": 9,
+     "execution_count": 77,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -678,7 +676,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": 78,
    "metadata": {
     "id": "H9OwQMMr-IUl"
    },
@@ -713,55 +711,69 @@
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_12612\\2170477749.py:1: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
+      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_37800\\2170477749.py:1: FutureWarning:\n",
+      "\n",
+      "A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
       "The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n",
       "\n",
       "For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n",
       "\n",
       "\n",
-      "  loan_df['LoanAmount'].fillna(loan_df['LoanAmount'].mean(), inplace=True)\n",
-      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_12612\\2170477749.py:2: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
+      "\n",
+      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_37800\\2170477749.py:2: FutureWarning:\n",
+      "\n",
+      "A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
       "The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n",
       "\n",
       "For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n",
       "\n",
       "\n",
-      "  loan_df['Credit_History'].fillna(loan_df['Credit_History'].mode()[0], inplace=True)\n",
-      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_12612\\2170477749.py:3: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
+      "\n",
+      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_37800\\2170477749.py:3: FutureWarning:\n",
+      "\n",
+      "A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
       "The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n",
       "\n",
       "For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n",
       "\n",
       "\n",
-      "  loan_df['Married'].fillna(loan_df['Married'].mode()[0], inplace=True)\n",
-      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_12612\\2170477749.py:4: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
+      "\n",
+      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_37800\\2170477749.py:4: FutureWarning:\n",
+      "\n",
+      "A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
       "The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n",
       "\n",
       "For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n",
       "\n",
       "\n",
-      "  loan_df['Gender'].fillna(loan_df['Gender'].mode()[0], inplace=True)\n",
-      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_12612\\2170477749.py:5: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
+      "\n",
+      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_37800\\2170477749.py:5: FutureWarning:\n",
+      "\n",
+      "A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
       "The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n",
       "\n",
       "For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n",
       "\n",
       "\n",
-      "  loan_df['Dependents'].fillna(loan_df['Dependents'].mode()[0], inplace=True)\n",
-      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_12612\\2170477749.py:6: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
+      "\n",
+      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_37800\\2170477749.py:6: FutureWarning:\n",
+      "\n",
+      "A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
       "The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n",
       "\n",
       "For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n",
       "\n",
       "\n",
-      "  loan_df['Self_Employed'].fillna(loan_df['Self_Employed'].mode()[0], inplace=True)\n",
-      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_12612\\2170477749.py:7: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
+      "\n",
+      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_37800\\2170477749.py:7: FutureWarning:\n",
+      "\n",
+      "A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.\n",
       "The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.\n",
       "\n",
       "For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.\n",
       "\n",
       "\n",
-      "  loan_df['Loan_Amount_Term'].fillna(loan_df['Loan_Amount_Term'].mode()[0], inplace=True)\n"
+      "\n"
      ]
     }
    ],
@@ -778,7 +790,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
+   "execution_count": 79,
    "metadata": {},
    "outputs": [
     {
@@ -919,7 +931,7 @@
        "4         Urban           Y  "
       ]
      },
-     "execution_count": 11,
+     "execution_count": 79,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -932,7 +944,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 12,
+   "execution_count": 80,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/"
@@ -959,7 +971,7 @@
        "dtype: int64"
       ]
      },
-     "execution_count": 12,
+     "execution_count": 80,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -971,7 +983,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 13,
+   "execution_count": 81,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/"
@@ -998,7 +1010,7 @@
        "dtype: object"
       ]
      },
-     "execution_count": 13,
+     "execution_count": 81,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1009,7 +1021,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 14,
+   "execution_count": 82,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/",
@@ -1228,7 +1240,7 @@
        "[5 rows x 22 columns]"
       ]
      },
-     "execution_count": 14,
+     "execution_count": 82,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1243,7 +1255,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 15,
+   "execution_count": 83,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/",
@@ -1391,7 +1403,7 @@
        "4         Urban           Y  "
       ]
      },
-     "execution_count": 15,
+     "execution_count": 83,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1402,7 +1414,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 16,
+   "execution_count": 84,
    "metadata": {
     "id": "z0TJsU38S5Yf"
    },
@@ -1411,8 +1423,10 @@
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_12612\\3378583978.py:1: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`\n",
-      "  loan_df.replace({\"Married\": {\"Yes\":1, \"No\":0}, \"Gender\":{\"Male\":1, \"Female\": 0}, \"Dependents\":{\"3+\":3}, \"Education\":{\"Graduate\":1,\"Not Graduate\":0}, \"Property_Area\": {\"Urban\":2, \"Semiurban\":1, \"Rural\":0}, \"Loan_Status\": {\"Y\":1, \"N\":0}, \"Self_Employed\": {\"Yes\":1, \"No\":0}}, inplace=True)\n"
+      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_37800\\3378583978.py:1: FutureWarning:\n",
+      "\n",
+      "Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`\n",
+      "\n"
      ]
     }
    ],
@@ -1581,7 +1595,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 17,
+   "execution_count": 85,
    "metadata": {},
    "outputs": [
     {
@@ -1590,7 +1604,7 @@
        "<Axes: >"
       ]
      },
-     "execution_count": 17,
+     "execution_count": 85,
      "metadata": {},
      "output_type": "execute_result"
     },
@@ -1627,7 +1641,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 18,
+   "execution_count": 86,
    "metadata": {
     "id": "yjvAtz8BQoaS"
    },
@@ -1639,7 +1653,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 19,
+   "execution_count": 87,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/"
@@ -1723,7 +1737,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 30,
+   "execution_count": 88,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/"
@@ -1747,7 +1761,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 31,
+   "execution_count": 89,
    "metadata": {
     "id": "-w_QlD9ohB0W"
    },
@@ -1758,7 +1772,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 32,
+   "execution_count": 90,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/",
@@ -2181,7 +2195,7 @@
        "SVC(kernel='linear')"
       ]
      },
-     "execution_count": 32,
+     "execution_count": 90,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2192,7 +2206,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 33,
+   "execution_count": 91,
    "metadata": {
     "id": "owEs5fQ_id0i"
    },
@@ -2204,7 +2218,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 34,
+   "execution_count": 25,
    "metadata": {
     "colab": {
      "base_uri": "https://localhost:8080/"
@@ -2234,14 +2248,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 38,
+   "execution_count": 93,
    "metadata": {},
    "outputs": [
     {
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_12612\\2920868772.py:3: UserWarning:\n",
+      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_37800\\2920868772.py:3: UserWarning:\n",
       "\n",
       "\n",
       "\n",
@@ -2262,7 +2276,7 @@
        "<Axes: xlabel='Total_Income', ylabel='Density'>"
       ]
      },
-     "execution_count": 38,
+     "execution_count": 93,
      "metadata": {},
      "output_type": "execute_result"
     },
@@ -2285,14 +2299,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 39,
+   "execution_count": 94,
    "metadata": {},
    "outputs": [
     {
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_12612\\1896899129.py:2: UserWarning:\n",
+      "C:\\Users\\felix\\AppData\\Local\\Temp\\ipykernel_37800\\1896899129.py:2: UserWarning:\n",
       "\n",
       "\n",
       "\n",
@@ -2340,7 +2354,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 40,
+   "execution_count": 96,
    "metadata": {},
    "outputs": [
     {
@@ -2365,7 +2379,7 @@
        "0.8187372708757638"
       ]
      },
-     "execution_count": 40,
+     "execution_count": 96,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2377,266 +2391,6 @@
     "\n",
     "pred_cv = lg_model.predict(X_train)\n",
     "accuracy_score(Y_train,pred_cv)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 43,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/html": [
-       "\n",
-       "        <iframe\n",
-       "            width=\"100%\"\n",
-       "            height=\"650\"\n",
-       "            src=\"http://127.0.0.1:8050/\"\n",
-       "            frameborder=\"0\"\n",
-       "            allowfullscreen\n",
-       "            \n",
-       "        ></iframe>\n",
-       "        "
-      ],
-      "text/plain": [
-       "<IPython.lib.display.IFrame at 0x1773e2c6150>"
-      ]
-     },
-     "metadata": {},
-     "output_type": "display_data"
-    },
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "c:\\Users\\felix\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\sklearn\\base.py:493: UserWarning:\n",
-      "\n",
-      "X does not have valid feature names, but LogisticRegression was fitted with feature names\n",
-      "\n",
-      "c:\\Users\\felix\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\sklearn\\base.py:493: UserWarning:\n",
-      "\n",
-      "X does not have valid feature names, but LogisticRegression was fitted with feature names\n",
-      "\n",
-      "c:\\Users\\felix\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\sklearn\\base.py:493: UserWarning:\n",
-      "\n",
-      "X does not have valid feature names, but LogisticRegression was fitted with feature names\n",
-      "\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "---------------------------------------------------------------------------\n",
-      "TypeError                                 Traceback (most recent call last)\n",
-      "Cell In[43], line 90, in predict_loan_approval(\n",
-      "    n_clicks=1,\n",
-      "    gender=None,\n",
-      "    marital_status=None,\n",
-      "    dependents=None,\n",
-      "    education=None,\n",
-      "    self_employed=None,\n",
-      "    applicant_income=None,\n",
-      "    coapplicant_income=None,\n",
-      "    loan_amount=None,\n",
-      "    loan_term=None,\n",
-      "    credit_history=None,\n",
-      "    residential_area=None\n",
-      ")\n",
-      "     88 features = [gender, marital_status, dependents, education, self_employed, applicant_income, coapplicant_income, loan_amount, loan_term, credit_history, residential_area]\n",
-      "     89 # Use your model to predict\n",
-      "---> 90 prediction = lg_model.predict([features])\n",
-      "        features = [None, None, None, None, None, None, None, None, None, None, None]\n",
-      "        [features] = [[None, None, None, None, None, None, None, None, None, None, None]]\n",
-      "        lg_model = LogisticRegression(max_iter=1000, random_state=1)\n",
-      "     91 if prediction[0] == 1:\n",
-      "     92     return \"Loan Approved\"\n",
-      "\n",
-      "File c:\\Users\\felix\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\sklearn\\linear_model\\_base.py:351, in LinearClassifierMixin.predict(\n",
-      "    self=LogisticRegression(max_iter=1000, random_state=1),\n",
-      "    X=[[None, None, None, None, None, None, None, None, None, None, None]]\n",
-      ")\n",
-      "    337 \"\"\"\n",
-      "    338 Predict class labels for samples in X.\n",
-      "    339 \n",
-      "   (...)\n",
-      "    348     Vector containing the class labels for each sample.\n",
-      "    349 \"\"\"\n",
-      "    350 xp, _ = get_namespace(X)\n",
-      "--> 351 scores = self.decision_function(X)\n",
-      "        X = [[None, None, None, None, None, None, None, None, None, None, None]]\n",
-      "        self = LogisticRegression(max_iter=1000, random_state=1)\n",
-      "    352 if len(scores.shape) == 1:\n",
-      "    353     indices = xp.astype(scores > 0, int)\n",
-      "\n",
-      "File c:\\Users\\felix\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\sklearn\\linear_model\\_base.py:333, in LinearClassifierMixin.decision_function(\n",
-      "    self=LogisticRegression(max_iter=1000, random_state=1),\n",
-      "    X=array([[None, None, None, None, None, None, None, None, None, None, None]],\n",
-      "      dtype=object)\n",
-      ")\n",
-      "    330 xp, _ = get_namespace(X)\n",
-      "    332 X = self._validate_data(X, accept_sparse=\"csr\", reset=False)\n",
-      "--> 333 scores = safe_sparse_dot(X, self.coef_.T, dense_output=True) + self.intercept_\n",
-      "        X = array([[None, None, None, None, None, None, None, None, None, None, None]],\n",
-      "      dtype=object)\n",
-      "        self = LogisticRegression(max_iter=1000, random_state=1)\n",
-      "        self.intercept_ = array([-0.43822778])\n",
-      "        self.coef_ = array([[-1.34600911e-02,  6.45268267e-01, -1.52719094e-01,\n",
-      "         2.69746620e-01,  1.19741801e-01, -9.12826018e-06,\n",
-      "        -2.36674540e-05, -2.41870161e-03, -4.72101963e-03,\n",
-      "         3.31142884e+00,  7.12270902e-02]])\n",
-      "    334 return xp.reshape(scores, (-1,)) if scores.shape[1] == 1 else scores\n",
-      "\n",
-      "File c:\\Users\\felix\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\sklearn\\utils\\extmath.py:208, in safe_sparse_dot(\n",
-      "    a=array([[None, None, None, None, None, None, None, None, None, None, None]],\n",
-      "      dtype=object),\n",
-      "    b=array([[-1.34600911e-02],\n",
-      "       [ 6.45268267e-0...    [ 3.31142884e+00],\n",
-      "       [ 7.12270902e-02]]),\n",
-      "    dense_output=True\n",
-      ")\n",
-      "    206         ret = np.dot(a, b)\n",
-      "    207 else:\n",
-      "--> 208     ret = a @ b\n",
-      "        a = array([[None, None, None, None, None, None, None, None, None, None, None]],\n",
-      "      dtype=object)\n",
-      "        b = array([[-1.34600911e-02],\n",
-      "       [ 6.45268267e-01],\n",
-      "       [-1.52719094e-01],\n",
-      "       [ 2.69746620e-01],\n",
-      "       [ 1.19741801e-01],\n",
-      "       [-9.12826018e-06],\n",
-      "       [-2.36674540e-05],\n",
-      "       [-2.41870161e-03],\n",
-      "       [-4.72101963e-03],\n",
-      "       [ 3.31142884e+00],\n",
-      "       [ 7.12270902e-02]])\n",
-      "    210 if (\n",
-      "    211     sparse.issparse(a)\n",
-      "    212     and sparse.issparse(b)\n",
-      "    213     and dense_output\n",
-      "    214     and hasattr(ret, \"toarray\")\n",
-      "    215 ):\n",
-      "    216     return ret.toarray()\n",
-      "\n",
-      "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'\n",
-      "\n"
-     ]
-    }
-   ],
-   "source": [
-    "\n",
-    "\n",
-    "# Initialize the Dash app\n",
-    "app = dash.Dash(__name__)\n",
-    "\n",
-    "# Define the layout of your app\n",
-    "app.layout = html.Div([\n",
-    "    html.H1(\"Loan Approval Prediction\"),\n",
-    "    dcc.Dropdown(\n",
-    "        id='gender-dropdown',\n",
-    "        options=[\n",
-    "            {'label': 'Male', 'value': 1},\n",
-    "            {'label': 'Female', 'value': 0}\n",
-    "        ],\n",
-    "        placeholder=\"Select Gender\"\n",
-    "    ),\n",
-    "    dcc.Dropdown(\n",
-    "        id='marital-status-dropdown',\n",
-    "        options=[\n",
-    "            {'label': 'Married', 'value': 1},\n",
-    "            {'label': 'Single', 'value': 0},\n",
-    "            {'label': 'Divorced', 'value': 2}\n",
-    "        ],\n",
-    "        placeholder=\"Select Marital Status\"\n",
-    "    ),\n",
-    "    dcc.Input(id='dependents-input', type='number', placeholder='Enter Number of Dependents'),\n",
-    "    dcc.Dropdown(\n",
-    "        id='education-dropdown',\n",
-    "        options=[\n",
-    "            {'label': 'Graduated', 'value': 1},\n",
-    "            {'label': 'Not Graduated', 'value': 0}\n",
-    "        ],\n",
-    "        placeholder=\"Select Education Status\"\n",
-    "    ),\n",
-    "    dcc.Dropdown(\n",
-    "        id='self-employed-dropdown',\n",
-    "        options=[\n",
-    "            {'label': 'Yes', 'value': 1},\n",
-    "            {'label': 'No', 'value': 0}\n",
-    "        ],\n",
-    "        placeholder=\"Select Self Employment Status\"\n",
-    "    ),\n",
-    "    dcc.Input(id='applicant-income-input', type='number', placeholder='Enter Applicant Income'),\n",
-    "    dcc.Input(id='coapplicant-income-input', type='number', placeholder='Enter Co-Applicant Income'),\n",
-    "    dcc.Input(id='loan-amount-input', type='number', placeholder='Enter Loan Amount'),\n",
-    "    dcc.Input(id='loan-term-input', type='number', placeholder='Enter Loan Term'),\n",
-    "    dcc.Dropdown(\n",
-    "        id='credit-history-dropdown',\n",
-    "        options=[\n",
-    "            {'label': 'Good', 'value': 1.0},\n",
-    "            {'label': 'Bad', 'value': 0.0}\n",
-    "        ],\n",
-    "        placeholder=\"Select Credit History\"\n",
-    "    ),\n",
-    "    dcc.Dropdown(\n",
-    "        id='residential-area-dropdown',\n",
-    "        options=[\n",
-    "            {'label': 'Urban', 'value': 2},\n",
-    "            {'label': 'Rural', 'value': 0},\n",
-    "            {'label': 'Semi-Urban', 'value': 1}\n",
-    "        ],\n",
-    "        placeholder=\"Select Residential Area\"\n",
-    "    ),\n",
-    "    html.Button('Predict', id='predict-button', n_clicks=0),\n",
-    "\n",
-    "    # Display the prediction result\n",
-    "    html.Div(id='prediction-output')\n",
-    "])\n",
-    "\n",
-    "# Define callback to predict loan approval\n",
-    "@app.callback(\n",
-    "    Output('prediction-output', 'children'),\n",
-    "    [Input('predict-button', 'n_clicks')],\n",
-    "    [Input('gender-dropdown', 'value'),\n",
-    "     Input('marital-status-dropdown', 'value'),\n",
-    "     Input('dependents-input', 'value'),\n",
-    "     Input('education-dropdown', 'value'),\n",
-    "     Input('self-employed-dropdown', 'value'),\n",
-    "     Input('applicant-income-input', 'value'),\n",
-    "     Input('coapplicant-income-input', 'value'),\n",
-    "     Input('loan-amount-input', 'value'),\n",
-    "     Input('loan-term-input', 'value'),\n",
-    "     Input('credit-history-dropdown', 'value'),\n",
-    "     Input('residential-area-dropdown', 'value')]\n",
-    ")\n",
-    "def predict_loan_approval(n_clicks, gender, marital_status, dependents, education, self_employed, applicant_income, coapplicant_income, loan_amount, loan_term, credit_history, residential_area):\n",
-    "    if n_clicks > 0:\n",
-    "        # Assuming you have preprocessed your input data appropriately\n",
-    "        # Concatenate all features into a single list\n",
-    "        features = [gender, marital_status, dependents, education, self_employed, applicant_income, coapplicant_income, loan_amount, loan_term, credit_history, residential_area]\n",
-    "        # Use your model to predict\n",
-    "        prediction = lg_model.predict([features])\n",
-    "        if prediction[0] == 1:\n",
-    "            return \"Loan Approved\"\n",
-    "        else:\n",
-    "            return \"Loan Not Approved\"\n",
-    "        \n",
-    "\n",
-    "\n",
-    "# Run the app\n",
-    "if __name__ == '__main__':\n",
-    "    app.run_server(debug=True)\n",
-    "  "
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "print(predict)"
    ]
   }
  ],
@@ -2659,7 +2413,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.12.3"
+   "version": "3.11.7"
   }
  },
  "nbformat": 4,
