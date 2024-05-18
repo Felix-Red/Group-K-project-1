@@ -5,7 +5,7 @@ This project is a machine learning system that employs Support Vector Machines (
 ## Overview
 
 In this project, the Support Vector Machine algorithm is utilized for the classification of whether a user is approved for a loan or not. The system analyzes user-provided data to determine loan approval status.
-![](https://imgur.com/a/loan-status-prediction-mlg-XuguxjE)
+![image of dash app]([https://imgur.com/a/loan-status-prediction-mlg-XuguxjE](https://i.imgur.com/2t5r78N_d.jpg?maxwidth=520&shape=thumb&fidelity=high))
 
 ## Usage
 
