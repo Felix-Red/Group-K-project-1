@@ -3,7 +3,7 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 import joblib
 
-classifier = joblib.load("./artifacts/classifierModel.plk")
+classifier = joblib.load("./src/classifierModel.plk")
 
 
 app = dash.Dash(__name__, external_stylesheets=['style.css'])
