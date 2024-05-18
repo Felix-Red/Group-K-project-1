@@ -1,50 +1,9 @@
-import pandas as pd
-import numpy as np
-import seaborn as sns
-from sklearn import svm
-from sklearn.metrics import accuracy_score, classification_report
-from sklearn.model_selection import train_test_split, StratifiedKFold
-from sklearn import tree
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import StandardScaler
-import skimpy as sk
-from category_encoders import OneHotEncoder
-import matplotlib.pyplot as plt
 import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
+import joblib
 
-loan_df = pd.read_csv("./data/raw_data.csv")
-loan_val = pd.read_csv("./data/validation.csv")
-#loan_val.head()
-#loan_df.head()
-
-
-#print(f'The dataframe has {loan_df.shape[0]} rows and {loan_df.shape[1]} columns.')
-
-loan_df['LoanAmount'].fillna(loan_df['LoanAmount'].mean(), inplace=True)
-loan_df['Credit_History'].fillna(loan_df['Credit_History'].mode()[0], inplace=True)
-loan_df['Married'].fillna(loan_df['Married'].mode()[0], inplace=True)
-loan_df['Gender'].fillna(loan_df['Gender'].mode()[0], inplace=True)
-loan_df['Dependents'].fillna(loan_df['Dependents'].mode()[0], inplace=True)
-loan_df['Self_Employed'].fillna(loan_df['Self_Employed'].mode()[0], inplace=True)
-loan_df['Loan_Amount_Term'].fillna(loan_df['Loan_Amount_Term'].mode()[0], inplace=True)
-#loan_df.info()
-
-# Dropping the loan id column
-loan_df = loan_df.drop(columns=['Loan_ID'], inplace=False)
-#loan_df.head()
-
-loan_df.replace({"Married": {"Yes":1, "No":0}, "Gender":{"Male":1, "Female": 0}, "Dependents":{"3+":3}, "Education":{"Graduate":1,"Not Graduate":0}, "Property_Area": {"Urban":2, "Semiurban":1, "Rural":0}, "Loan_Status": {"Y":1, "N":0}, "Self_Employed": {"Yes":1, "No":0}}, inplace=True)
-
-X = loan_df.drop(columns = ["Loan_Status"], axis =1)
-Y = loan_df["Loan_Status"]
-
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=2)
-#print(X.shape, X_train.shape, X_test.shape)
-
-classifier = svm.SVC(kernel="linear")
-classifier.fit(X_train, Y_train)
+classifier = joblib.load("./artifacts/classifierModel.plk")
 
 
 app = dash.Dash(__name__, external_stylesheets=['style.css'])
